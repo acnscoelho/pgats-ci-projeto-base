@@ -8,10 +8,7 @@
 
  on: 
   schedule:
-    # - cron: '0 8 * * 1'
-    - uses: szenius/set-timezone@v2.0
-    with:
-      timezoneLinux: "America/Sao_Paulo"
+    - cron: '0 8 * * 1'
 
  jobs:
 
