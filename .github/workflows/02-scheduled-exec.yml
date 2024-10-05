@@ -1,14 +1,14 @@
-# CI de Nìvel 02 - Disparo automático em períodos definidos
+# CI de Nìvel 02 - Disparo automático por agendamento
 
 # nome que vai aparecer lá nas opções de pipe
  name: "Execução Agendada"
 
 # regras de disparo da excucao (triggers)
- # gatilho de exec magendada = schedule
+ # gatilho de exec manual = workflow_dispatch
 
  on: 
   schedule:
-    - cron: '0 8 * * 0'
+    - cron: '0 8 * * 1'
 
  jobs:
 
