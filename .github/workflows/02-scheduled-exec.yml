@@ -1,47 +1,44 @@
 # CI de Nìvel 02 - Disparo automático por agendamento
 
 # nome que vai aparecer lá nas opções de pipe
- name: "Execução Agendada"
+name: 'Execução Agendada'
 
 # regras de disparo da excucao (triggers)
- # gatilho de exec manual = workflow_dispatch
+# gatilho de exec manual = workflow_dispatch
 
- on: 
+on:
   schedule:
     - cron: '40 19  * * *'
 
- jobs:
-
+jobs:
   # descricao do jovo
   e2e-tests:
-
     # maquina que o job vai executar
-    runs-on: ['ubuntu-latest']  
+    runs-on: ['ubuntu-latest']
 
     # passo a passo das acoes do job
     steps:
-
       - uses: actions/checkout@v4
 
-    # - uses: actions/setup-node@v4
-    #    with:
-    #      node-version: lts/*
+      # - uses: actions/setup-node@v4
+      #    with:
+      #      node-version: lts/*
 
       - name: Instalando Yarn
         run: npm install -g yarn
 
-      - name: Instalando dependências 
+      - name: Instalando dependências
         run: yarn
-      
-      - name: Instalando Playwright 
+
+      - name: Instalando Playwright
         run: yarn playwright install
 
       - name: Testes E2E (end-to-end)
-        run: yarn run e2e    
+        run: yarn run e2e
 
       # passed, failed, cancelled
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
           name: relatorio-de-testes
-          path: ./playwright-report  
+          path: ./playwright-report
